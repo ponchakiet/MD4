@@ -1,0 +1,49 @@
+Chào bạn, việc thiết kế một hệ thống ở tầm cỡ siêu ứng dụng như TikTok đòi hỏi chúng ta phải có cái nhìn tường minh cả về mặt vận hành doanh nghiệp (Business) lẫn chiến lược công nghệ (Domain Strategy).
+
+Dưới đây là bản thiết kế kiến trúc cho TikTok theo 2 cách tiếp cận, kèm theo đánh giá so sánh xem cách nào giúp team phát triển nhanh hơn.
+
+CÁCH 1: Phân rã theo Khả năng Kinh doanh (Business Capability)
+Cách tiếp cận này chia hệ thống dựa trên các phòng ban hoặc chức năng kinh doanh độc lập cấu thành nên bộ máy của TikTok. Mỗi module chịu trách nhiệm toàn diện cho một mảng tính năng từ đầu đến cuối (End-to-End).
+
+1. Video Content Service (Dịch vụ Nội dung Video): Chịu trách nhiệm về toàn bộ vòng đời của video ngắn. Từ luồng user upload, lưu trữ, xử lý hiệu ứng/filter, cho đến việc phân phối luồng phát video (Streaming) cho người xem.
+
+2. User & Social Graph Service (Dịch vụ Người dùng & Mạng lưới Xã hội): Quản lý hồ sơ người dùng, luồng đăng ký/đăng nhập, hệ thống Follow/Unfollow, danh sách bạn bè và thiết lập quyền riêng tư.
+
+3. Interaction Service (Dịch vụ Tương tác): Quản lý toàn bộ các hoạt động tương tác thời gian thực của người dùng trên nền tảng, bao gồm hệ thống Thả tim (Like), Bình luận (Comment), Chia sẻ (Share) và Duet/Stitch.
+
+4. Recommendation Service (Dịch vụ Gợi ý): Thu thập hành vi người dùng (thời gian xem, lượt bỏ qua, tương tác) để cung cấp danh sách video phù hợp nhất cho từng cá nhân.
+
+5. Advertising & Monetization Service (Dịch vụ Quảng cáo & Kiếm tiền): Hệ thống dành cho các nhà quảng cáo đặt bid, quản lý chiến dịch hiển thị video tài trợ (In-feed Ads), và tính toán chi phí doanh thu.
+
+6. TikTok Shop & Creator Marketplace (Thương mại điện tử & Kết nối Creator): Quản lý gian hàng, livestream bán hàng, giỏ hàng, đơn hàng và hệ thống chia hoa hồng cho nhà sáng tạo nội dung.
+
+CÁCH 2: Phân rã theo Tính chất Nghiệp vụ (Sub-domain trong DDD)
+Cách tiếp cận này không chia theo bề nổi của tính năng, mà phân tách sâu vào bản chất công nghệ và giá trị chiến lược của từng phần để quyết định nên đầu tư nguồn lực ra sao.
+
+Core Domain (Cốt lõi - Tạo sự khác biệt độc quyền)
+For You Page Algorithm (Thuật toán gợi ý trang "Dành cho bạn"): Đây chính là "long mạch" của TikTok. Thuật toán AI dự đoán chính xác sở thích người dùng trong vài giây xem đầu tiên là thứ giúp TikTok giữ chân người dùng vượt trội so với Reels hay Shorts. Phần này bắt buộc phải tự xây dựng, bảo mật tối đa và quy tụ những kỹ sư AI xuất sắc nhất.
+
+Real-time Video Processing & Filters (Xử lý Video & Filter thời gian thực): Các filter AR, công nghệ làm mịn da, nhận diện khuôn mặt và đồng bộ nhạc (Audio Sync) khi quay video. Nó tạo ra trải nghiệm sáng tạo nội dung gây nghiện cho giới trẻ.
+
+Supporting Domain (Hỗ trợ - Cần thiết nhưng không tạo đột phá)
+Interaction & Social Engagement (Comment, Like, Share): Tính năng thả tim, viết bình luận là bắt buộc phải có cho một mạng xã hội để tăng tính tương tác, nhưng công nghệ làm comment/like không giúp TikTok chiến thắng đối thủ. Team phát triển ở đây chỉ cần làm tốt, tối ưu hóa bộ nhớ đệm (Cache) để chịu tải cao là đủ.
+
+Creator Analytics (Số liệu phân tích cho Creator): Thống kê lượt xem, biểu đồ tăng trưởng follower cho các idol/creator. Nó giúp hỗ trợ hệ sinh thái nhưng không phải là vũ khí cạnh tranh chính.
+
+Generic Domain (Chung/Phổ thông - Hệ thống nào cũng có)
+Video Transcoding & CDN Infrastructure (Nén/Chuyển đổi định dạng Video và Hạ tầng mạng phân phối nội dung): Việc biến một video gốc thành các định dạng .mp4, .h264, .h265 với nhiều độ phân giải khác nhau và phân phối qua mạng. Nghiệp vụ này đã có các tiêu chuẩn quốc tế và các giải pháp đám mây cực mạnh (như AWS Elemental MediaConvert, Akamai, Cloudflare CDN). TikTok có thể mua giải pháp hoặc dùng các thư viện mã nguồn mở tiêu chuẩn (FFmpeg) để xử lý thay vì tự nghiên cứu từ đầu.
+
+Identity & Authentication (Định danh & Đăng nhập): Đăng nhập bằng Google, Apple ID, Facebook, SMS OTP. Phần này áp dụng các chuẩn bảo mật chung (OAuth2, OIDC) và có thể tích hợp nhanh chóng qua các dịch vụ identity có sẵn.
+
+SO SÁNH: Cách chia nào giúp team phát triển nhanh hơn?
+Để trả lời câu hỏi này, chúng ta cần nhìn vào giai đoạn của dự án và mô hình tổ chức nhân sự:
+
+Về ngắn hạn và tốc độ bàn giao (Time-to-Market): Cách 1 (Business Capability) thắng.
+Lý do: Cách chia này khớp hoàn toàn với mô hình tổ chức Cross-functional Team (Team đa chức năng) hoặc các Agile/Scrum team độc lập.
+
+Một team "Interaction Service" sẽ có đủ từ Front-end, Back-end, Tester cho đến BA. Họ có thể tự thiết kế database, tự viết API, tự deploy tính năng "Bình luận bằng hình ảnh" mà không cần phải xin phép hay phụ thuộc vào tiến độ của team "Video Content". Các team chạy song song giúp sản phẩm ra mắt tính năng mới cực kỳ nhanh.
+
+Về dài hạn và tối ưu hóa nguồn lực chiến lược: Cách 2 (Sub-domain) thắng.
+Lý do: Cách 2 giúp doanh nghiệp tránh được việc lãng phí chất xám. Nếu chia theo Cách 1, có thể cả team Video, team Ads và team Shop đều phải tự viết lại luồng xử lý video (Transcoding) hoặc tự làm luồng tăng/giảm like riêng, gây ra tình trạng trùng lặp mã nguồn và giẫm chân lên nhau.
+
+Khi áp dụng Cách 2, doanh nghiệp sẽ đóng gói phần Generic (như Transcoding) thành một Shared-Service (Dịch vụ dùng chung) hoặc mua ngoài. Nhờ đó, doanh nghiệp giải phóng được 80% nhân sự khỏi các công việc sự vụ, phổ thông để dồn toàn lực đập tiền và nhân tài vào làm Core Domain (Thuật toán For You).

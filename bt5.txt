@@ -1,0 +1,44 @@
+1. Core Domain (Tên miền cốt lõi) – Trọng tâm đầu tư
+Định nghĩa: Đây là vũ khí chiến lược, thứ tạo ra lợi thế cạnh tranh độc quyền và sự khác biệt giúp Shopee dẫn đầu thị trường so với Lazada, TikTok Shop. Team chứa các Senior Dev giỏi nhất và nhiều tài nguyên nhất sẽ tập trung ở đây.
+
+Module Flash Sale & Real-time Promotion (Khuyến mãi theo thời gian thực):
+
+Tại sao là Core? Khả năng xử lý hàng triệu người dùng cùng giật coupon, mua sản phẩm 1k vào đúng 0h00 mà hệ thống không sập, kết hợp với các thuật toán cá nhân hóa voucher là "đặc sản" giữ chân người dùng của Shopee.
+
+Recommendation & Search Engine (Hệ thống gợi ý & Tìm kiếm sản phẩm):
+
+Tại sao là Core? Sàn thương mại điện tử sống còn nhờ tỷ lệ chuyển đổi (Conversion Rate). Thuật toán AI hiểu người dùng muốn gì để hiển thị sản phẩm phù hợp trên trang chủ (Feed) chính là cỗ máy in tiền của Shopee.
+
+Order Management Service (OMS) & Điểm thưởng/Thành viên (Shopee Rewards):
+
+Tại sao là Core? Quy trình xử lý đơn hàng phức tạp kết hợp với hệ thống giữ chân người dùng (Gamification, nuôi tôm, lắc xu, phân hạng thành viên) được thiết kế đặc thù để tối ưu hóa vòng đời khách hàng (Customer Lifetime Value).
+
+2. Supporting Domain (Tên miền hỗ trợ) – Tự xây dựng nhưng không tạo đột phá
+Định nghĩa: Những module này bắt buộc phải có để vận hành doanh nghiệp, nhưng bản thân chúng không giúp Shopee trở nên độc nhất. Chúng mang tính chất đặc thù của ngành bán lẻ/E-commerce nhưng không cần quá đột phá về mặt công nghệ.
+
+Product Catalog Management (Quản lý sản phẩm & Gian hàng):
+
+Tại sao là Supporting? Việc hiển thị ảnh, giá, mô tả sản phẩm, phân loại danh mục là tính năng cơ bản của mọi sàn E-commerce. Shopee cần tự viết module này để tùy biến sâu theo nghiệp vụ, nhưng nó không phải là thứ tạo ra sự khác biệt chiến lược với đối thủ.
+
+Inventory & Stock Management (Quản lý kho hàng):
+
+Tại sao là Supporting? Nghiệp vụ kiểm soát số lượng tồn kho (tăng/giảm/giữ kho) tuân theo các quy tắc kế toán và quản trị kho tiêu chuẩn. Nó cần độ chính xác cao và tích hợp sâu với OMS, nhưng không cần sáng tạo thuật toán mới.
+
+Logistics & Shipping Integration (Điều phối vận chuyển):
+
+Tại sao là Supporting? Nhiệm vụ chính là làm trung gian: nhận thông tin từ đơn hàng, tính phí dựa trên biểu phí có sẵn, rồi đẩy sang các đơn vị vận chuyển (hoặc Shopee Xpress). Nó hỗ trợ trực tiếp cho luồng vận hành nhưng bản chất là một module điều phối nghiệp vụ.
+
+3. Generic Domain (Tên miền chung) – Giải pháp mua ngoài hoặc dùng thư viện
+Định nghĩa: Những thứ mà hệ thống nào cũng phải có. Nghiệp vụ của chúng đã được chuẩn hóa trên toàn thế giới. Shopee tuyệt đối không nên tự nghiên cứu xây dựng từ đầu (trừ khi có lý do quá đặc biệt), mà nên mua, dùng mã nguồn mở hoặc tích hợp bên thứ ba.
+
+Identity & User Management (Xác thực & Định danh):
+
+Tại sao là Generic? Đăng nhập, đăng ký, cấp Token (JWT), bảo mật OAuth2, gửi OTP... hệ thống nào cũng giống nhau. Shopee có thể sử dụng các giải pháp như Keycloak, Auth0, hoặc các thư viện bảo mật tiêu chuẩn để tiết kiệm thời gian.
+
+Payment Gateway Integration (Cổng thanh toán):
+
+Tại sao là Generic? Thay vì tự xây dựng hạ tầng kết nối trực tiếp đến hàng trăm ngân hàng, Shopee tích hợp các cổng thanh toán có sẵn, các thẻ quốc tế (Visa/Mastercard) hoặc liên kết trực tiếp qua ví ShopeePay (vốn là một pháp nhân/hệ thống tài chính độc lập đạt chuẩn PCI-DSS).
+
+Notification Service (Hệ thống gửi thông báo/Email/SMS):
+
+Tại sao là Generic? Việc đẩy thông báo (Push Notification), gửi SMS OTP hay Email xác nhận đơn hàng tuân theo các giao thức chung toàn cầu. Hệ thống này chỉ cần gọi API của các nhà đài hoặc dịch vụ như Firebase Cloud Messaging (FCM), AWS SES, Twilio.

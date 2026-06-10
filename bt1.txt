@@ -1,0 +1,20 @@
+1 Tại sao chọn kiến trúc là bước sống còn trước khi bắt đầu dự án?
+Trong giai đoạn startup, áp lực ra mắt sản phẩm nhanh là rất lớn. Tuy nhiên, việc bỏ qua bước thiết kế kiến trúc giống như việc xây một ngôi nhà mà không có bản vẽ móng. Việc chọn kiến trúc đúng ngay từ đầu là bước sống còn vì:
+
+Định hình khả năng mở rộng: Nếu kiến trúc ban đầu quá cứng nhắc (ví dụ: một khối Monolith thắt nút cổ chai), khi lượng người dùng tăng đột biến từ 1.000 lên 1.000.000, hệ thống sẽ sụp đổ. Việc thay đổi kiến trúc lúc này tốn kém gấp hàng chục lần so với việc thiết kế đúng ngay từ đầu.
+Quản lý kỹ thuật: Ta có thể chấp nhận làm nhanh một vài tính năng, nhưng trên một khung sườn vững chắc, ta sẽ dễ dàng phát triển sau này mà không phải đập đi xây lại toàn bộ.
+Tối ưu hóa nguồn lực và chi phí: Kiến trúc quyết định công nghệ. Chọn sai kiến trúc dẫn đến việc tuyển dụng sai nhân sự hoặc tốn quá nhiều chi phí vận hành server không cần thiết.
+Giảm thiểu rủi ro: Kiến trúc giúp nhận diện sớm các rủi ro về bảo mật, hiệu năng và tích hợp bên thứ ba trước khi viết dòng code đầu tiên.
+2 Các loại kiến trúc phần mềm phổ biến
+2.1 Kiến trúc Monolithic:
+Đặc điểm: Toàn bộ các chức năng (UI, Business Logic, Database) được đóng gói trong một đơn vị duy nhất.
+Ưu điểm: Dễ phát triển, triển khai nhanh, phù hợp cho giai đoạn MVP (Sản phẩm khả thi tối thiểu) để kiểm chứng thị trường.
+Nhược điểm: Khó mở rộng khi hệ thống lớn dần, một lỗi nhỏ có thể làm sập toàn bộ ứng dụng.
+2.2 Kiến trúc Microservices:
+Đặc điểm: Chia nhỏ hệ thống thành các dịch vụ độc lập, giao tiếp với nhau qua API.
+Ưu điểm: Khả năng mở rộng cực cao, cho phép các nhóm phát triển độc lập, dễ dàng áp dụng các công nghệ khác nhau cho từng dịch vụ.
+Nhược điểm: Rất phức tạp trong quản lý vận hành, đòi hỏi hạ tầng (DevOps) mạnh và chi phí ban đầu cao.
+2.3 Kiến trúc Phân lớp (Layered Architecture - N-tier):
+Đặc điểm: Chia hệ thống thành các tầng chức năng riêng biệt (ví dụ: Presentation Layer, Business Layer, Data Access Layer).
+Ưu điểm: Phân tách rõ ràng trách nhiệm của từng phần code, dễ bảo trì và kiểm thử.
+Nhược điểm: Có thể gây ra độ trễ do dữ liệu phải đi qua nhiều lớp, đôi khi quá rập khuôn cho các ứng dụng đơn giản.

@@ -1,0 +1,29 @@
+1. Identity & User Management (Quản lý người dùng & Định danh)
+Trách nhiệm: Quản lý toàn bộ vòng đời của tài khoản người dùng, bao gồm Người mua (Buyer), Người bán (Seller), Shipper và Admin.
+
+Nghiệp vụ chính: Đăng ký, đăng nhập (OTP, mạng xã hội), xác thực sinh trắc học (vân tay, khuôn mặt), quản lý hồ sơ bảo mật (KYC cho ví, định danh người bán) và phân quyền hệ thống (RBAC).
+
+2. Product Catalog Management (Quản lý danh mục & Sản phẩm)
+Trách nhiệm: Lưu trữ, hiển thị và quản lý hàng tỷ thông tin sản phẩm trên sàn.
+
+Nghiệp vụ chính: Cho phép người bán đăng tải sản phẩm, quản lý biến thể (màu sắc, kích cỡ), duyệt sản phẩm tự động (quét từ khóa cấm), phân loại danh mục, và tối ưu hóa bộ nhớ đệm (Cache) để người mua tìm kiếm, xem thông tin sản phẩm với độ trễ thấp nhất.
+
+3. Inventory & Stock Management (Quản lý kho hàng)
+Trách nhiệm: Đảm bảo tính chính xác và nhất quán của số lượng tồn kho theo thời gian thực (Real-time Inventory), đặc biệt là trong các đợt Flash Sale lớn.
+
+Nghiệp vụ chính: Giữ kho tạm thời khi người dùng ấn "Mua hàng" (Stock Reservation), trừ kho khi thanh toán thành công, hoàn kho nếu hủy đơn, và quản lý các kho hàng lớn thuộc chuỗi "Shopee Mall" hoặc "Shopee Choice".
+
+4. Order Management Service - OMS (Quản lý đơn hàng)
+Trách nhiệm: Quản lý toàn bộ quy trình từ khi đơn hàng được khởi tạo cho đến khi hoàn thành hoặc bị hủy.
+
+Nghiệp vụ chính: Điều phối trạng thái đơn hàng (Chờ thanh toán -> Chờ giao hàng -> Đang giao -> Đã giao -> Trả hàng/Hoàn tiền), tính toán tổng tiền đơn hàng (kết hợp giá sản phẩm, phí ship, voucher) và gửi thông báo trạng thái cho các bên liên quan.
+
+5. Payment & Wallet Service (Thanh toán & Ví điện tử)
+Trách nhiệm: Xử lý luồng tiền tệ trong hệ thống một cách an toàn, chính xác và bảo mật tuyệt đối.
+
+Nghiệp vụ chính: Tích hợp các cổng thanh toán ngân hàng, thẻ quốc tế, liên kết ví ShopeePay, xử lý tài khoản trả trước/trả sau (SPayLater), và quản lý hệ thống ví trung gian (Escrow) - giữ tiền của người mua cho đến khi họ xác nhận đã nhận hàng rồi mới túi tiền cho người bán.
+
+6. Logistics & Shipping Integration (Logistics & Giao hàng)
+Trách nhiệm: Kết nối thế giới số trực tuyến với hạ tầng vận chuyển vật lý bên ngoài.
+
+Nghiệp vụ chính: Tính toán phí vận chuyển dựa trên khoảng cách và cân nặng, tự động phân bổ đơn hàng cho các đơn vị vận chuyển phù hợp (Shopee Xpress, GHTK, GHN...), định vị hành trình đơn hàng (Tracking) theo thời gian thực và quản lý luồng gom hàng tại kho trung chuyển.

@@ -1,0 +1,12 @@
+Hạng mục,Chi tiết kỹ thuật & Thực tế doanh nghiệp
+👍 ƯU ĐIỂM,
+1. Mở rộng độc lập (Scalability),Doanh nghiệp có thể chỉ cần nâng cấp tài nguyên (CPU/RAM) cho riêng service bị nghẽn (ví dụ: Thanh toán) chứ không cần nâng cấp toàn bộ hệ thống. Tiết kiệm chi phí hạ tầng đáng kể khi chịu tải lớn.
+2. Độc lập công nghệ (Polyglot),"Team làm AI/Data có thể dùng Python, team làm Web chính dùng Java (Spring Boot), team làm Real-time dùng Node.js/NestJS. Không bị bó buộc vào một ngôn ngữ hay framework duy nhất như hệ thống cũ."
+3. Cô lập lỗi (Fault Isolation),"Nếu service ""Gợi ý sản phẩm"" bị sập hoặc dính lỗi, người dùng vẫn có thể ""Tìm kiếm"" và ""Mua hàng"" bình thường. Hệ thống không bị sập dây chuyền (Cascading Failure) như kiến trúc nguyên khối."
+4. Đội ngũ phát triển độc lập,"Các nhóm (Agile/Scrum team) có thể quản lý, phát triển và tự deploy (CI/CD) service của mình mà không cần đợi hoặc sợ làm ảnh hưởng đến code của nhóm khác."
+👎 NHƯỢC ĐIỂM / THÁCH THỨC,
+1. Vận hành cực kỳ phức tạp (DevOps),"Thay vì quản lý 1 cục code và 1 database, doanh nghiệp phải quản lý hàng chục, hàng trăm service. Việc cấu hình CI/CD, Containerization (Docker, Kubernetes), Service Mesh (Istio) đòi hỏi đội ngũ DevOps có trình độ rất cao."
+2. Nhất quán dữ liệu (Data Consistency),"Mỗi service nắm giữ database riêng. Bài toán giao dịch liên quan đến nhiều service (ví dụ: Trừ tiền -> Tạo đơn -> Giảm kho) không còn dùng DB Transaction thông thường được nữa mà phải triển khai các pattern phức tạp như Saga Pattern, dễ dẫn đến bất đồng bộ dữ liệu nếu xử lý không khéo."
+3. Độ trễ mạng (Network Latency),"Trong hệ thống cũ, các hàm gọi nhau trực tiếp trong bộ nhớ (In-memory). Ở Microservices, các service gọi nhau qua mạng (REST, gRPC, Message Broker), làm tăng độ trễ (latency) của một request tổng thể và tăng nguy cơ mất kết nối giữa chừng."
+4. Khó giám sát và kiểm thử (Observability & Testing),"Tìm bug trong hệ thống Microservices giống như ""mò kim đáy bể"". Doanh nghiệp bắt buộc phải đầu tư vào hệ thống Centralized Logging (ELK Stack) và Distributed Tracing (Jaeger, Zipkin) để biết request bị lỗi ở service nào. Việc Test tích hợp (Integration Test) cũng khó khăn hơn rất nhiều."
+5. Chi phí ban đầu và độ trễ bàn giao lớn,"Việc thiết lập hạ tầng, chia tách domain (Domain-Driven Design) tốn rất nhiều thời gian và tiền bạc. Trong giai đoạn đầu, tốc độ ra mắt tính năng mới sẽ chậm hơn so với việc viết tiếp trên nền hệ thống cũ."
