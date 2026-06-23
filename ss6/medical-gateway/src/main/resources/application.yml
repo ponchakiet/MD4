@@ -1,0 +1,33 @@
+spring:
+  application:
+        name: medical-gateway
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            # Điều hướng cho Patient Service
+            - id: patient-service-route
+              uri: lb://patient-service
+              predicates:
+                - Path=/api/v1/patients/**
+
+            # Điều hướng cho Doctor Service
+            - id: doctor-service-route
+              uri: lb://doctor-service
+              predicates:
+                - Path=/api/v1/doctors/**
+
+            # Điều hướng cho Appointment Service
+            - id: appointment-service-route
+              uri: lb://appointment-service
+              predicates:
+                - Path=/api/v1/appointments/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
