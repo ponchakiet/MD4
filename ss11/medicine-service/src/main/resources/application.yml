@@ -1,0 +1,25 @@
+spring:
+    application:
+        name: medicine-service
+    cache:
+        redis:
+            time-to-live: 10m
+    data:
+        redis:
+            host: localhost
+            port: 6379
+    jpa:
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: true
+    datasource:
+      url: jdbc:postgresql://localhost:5432/medicine
+      username: postgres
+      password: kimquan1
+session:
+  store-type: redis
+  redis:
+    namespace: "rikkei:pharmacy:session"
+
+    save-mode: always

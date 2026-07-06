@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: pharmacy-service
+    config:
+      import: "optional:configserver:http://localhost:8888"
+    kafka:
+      bootstrap-servers: localhost:9092
+      producer:
+        # Key là String (medicineId)
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        # Value là JSON (OrderEvent object)
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    datasource:
+      url: jdbc:postgresql://localhost:5432/pharmacy_db
+      username: postgres
+      password: kimquan1
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: daoanhquan2k3@gmail.com
+      password: nnylnygowrmrdtcx
+      properties:
+        mail.smtp.starttls.enable: true
