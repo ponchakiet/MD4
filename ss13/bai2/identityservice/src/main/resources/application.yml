@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/identity_db
+    username: postgres
+    password: your_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+# Cấu hình JWT
+jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-for-jwt-generation-must-be-at-least-256-bits}
+  expiration: 3600000  # 1 giờ (tính bằng milliseconds)
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.example.identityservice: DEBUG
