@@ -1,0 +1,23 @@
+server:
+  port: 8080  # Cổng của Gateway
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+        - id: course-service
+          uri: http://localhost:8081  # Course-Service chạy ở port 8081
+          predicates:
+            - Path=/api/courses/**
+          filters:
+            - name: JwtAuthenticationFilter  # Tên filter sẽ tạo
+
+# Secret key dùng chung với Identity Service
+app:
+  jwt:
+    secret: c2VjcmV0LWtleS1mb3Itand0LWF1dGhlbnRpY2F0aW9uLXNlcnZpY2UtdGVzdC1rZXkK
+    # Secret key phải cùng với Identity Service
+    # Lưu ý: Trong thực tế, nên lưu trong biến môi trường hoặc Vault
