@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: product-service
+
+app:
+  jwt:
+    secret: "vS6R5vH8N2zB4xR9mQ3pL1wT7yC5vH8N2zB4xR9mQ3pL1wI7yC5vH8N2z"
+
+logging:
+  level:
+    com.example.product: DEBUG
+    org.springframework.security: DEBUG
